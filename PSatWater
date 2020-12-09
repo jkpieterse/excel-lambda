@@ -2,7 +2,7 @@ Calculates the saturation pressure of Water in equilibrium with its vapor at a g
 
 =LAMBDA(temperature,
     LET(
-        t,temperature+273.15,
+        t,temperature,
         nreg1,1167.0521452767,
         nreg2,-724213.16703206,
         nreg3,-17.073846940092,
