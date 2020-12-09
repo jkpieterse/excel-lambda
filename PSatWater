@@ -1,0 +1,21 @@
+Calculates the saturation pressure of Water in equilibrium with its vapor at a given temperature in Kelvin
+
+=LAMBDA(temperature,
+    LET(
+        t,temperature+273.15,
+        nreg1,1167.0521452767,
+        nreg2,-724213.16703206,
+        nreg3,-17.073846940092,
+        nreg4,12020.82470247,
+        nreg5,-3232555.0322333,
+        nreg6,14.91510861353,
+        nreg7,-4823.2657361591,
+        nreg8,405113.40542057,
+        nreg9,-0.23855557567849,
+        nreg10,650.17534844798,
+        del,t + nreg9 / (t - nreg10),
+        aco, del ^ 2 + nreg1 * del + nreg2,
+        bco, nreg3 * del ^ 2 + nreg4 * del + nreg5,
+        cco, nreg6 * del ^ 2 + nreg7 * del + nreg8,
+        IF(OR(t < 273.15,t > 647.096),-1,(2 * cco / (-bco + (bco ^ 2 - 4 * aco * cco) ^ 0.5)) ^ 4 * 10))
+        )
